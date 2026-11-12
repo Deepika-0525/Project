@@ -1,0 +1,175 @@
+/* GLOBAL -------------------------------------------------- */
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #202020, #111);
+    margin: 0;
+    padding: 0;
+    color: #fff;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+/* TITLES -------------------------------------------------- */
+.title {
+    text-align: center;
+    font-size: 2.4em;
+    margin-bottom: 5px;
+    color: #FFCE54;
+    animation: fadeIn 0.7s ease-in;
+}
+
+.subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+/* CARDS --------------------------------------------------- */
+.card {
+    background: #1c1c1c;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 1px solid #333;
+    animation: slideIn 0.4s;
+}
+
+/* BUTTONS -------------------------------------------------- */
+.btn {
+    padding: 10px 20px;
+    margin: 5px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #555;
+    transform: scale(1.05);
+}
+
+.primary-btn { background: #4a90e2; }
+.primary-btn:hover { background: #6ab0ff; }
+
+.success-btn { background: #2ecc71; }
+.success-btn:hover { background: #5dff9a; }
+
+.danger-btn { background: #e74c3c; }
+.danger-btn:hover { background: #ff7b6b; }
+
+.large-btn { width: 100%; margin-top: 10px; }
+
+/* INPUT FILE ---------------------------------------------- */
+.file-input {
+    display: block;
+    padding: 12px;
+    background: #333;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.file-input input {
+    display: none;
+}
+
+/* LIST ----------------------------------------------------- */
+.upload-list {
+    list-style: none;
+    padding: 0;
+}
+
+.upload-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #222;
+    border-radius: 6px;
+    margin-bottom: 8px;
+}
+
+/* VIDEOS --------------------------------------------------- */
+.video-preview {
+    width: 100%;
+    max-height: 300px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* STATUS --------------------------------------------------- */
+.status-grid {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.status-box {
+    background: #333;
+    padding: 10px;
+    border-radius: 6px;
+    width: 30%;
+    text-align: center;
+}
+
+/* FLASH MESSAGE ------------------------------------------- */
+.msg-box {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-left: 4px solid #4a90e2;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    animation: highlight 0.4s ease-in-out;
+}
+
+/* BACK BUTTON --------------------------------------------- */
+.back-btn {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #4a90e2;
+}
+
+/* ANIMATIONS ---------------------------------------------- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes highlight {
+    from { background: rgba(255,255,255,0.0); }
+    to { background: rgba(255,255,255,0.1); }
+}
+
+/* RESPONSIVE ---------------------------------------------- */
+@media (max-width: 600px) {
+
+    .large-btn {
+        font-size: 0.9em;
+    }
+
+    .status-grid {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .status-box {
+        width: 100%;
+    }
+
+    .upload-item {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

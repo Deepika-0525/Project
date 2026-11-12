@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Videozen Pro – Upload</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1 class="title">🎥 Videozen Pro</h1>
+    <p class="subtitle">Hybrid AES + Blowfish Video Encryption</p>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="msg-box">
+            {% for m in messages %}
+                <p>{{ m }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="card upload-card">
+
+        <h2>Upload New Video</h2>
+
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <label class="file-input">
+                <input type="file" name="file" required>
+                <span>Select Video</span>
+            </label>
+
+            <button class="btn primary-btn" type="submit"
+                    title="Upload your video to begin the encryption workflow">
+                ⬆ Upload Video
+            </button>
+        </form>
+    </div>
+
+    <div class="card list-card">
+        <h2>Your Uploads</h2>
+
+        {% if uploads %}
+            <ul class="upload-list">
+                {% for u in uploads %}
+                <li class="upload-item">
+                    <span>📁 {{u}}</span>
+                    <a class="btn small-btn" href="/uploads/{{u}}">Open</a>
+                    <a class="btn danger-btn small-btn" href="/delete/{{u}}"
+                       onclick="return confirm('Delete this upload?')">Delete</a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No uploads yet.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Videozen – {{base}}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <a class="back-btn" href="/">⬅ Back</a>
+
+    <h1 class="title">🎬 {{base}}</h1>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="msg-box">
+            {% for m in messages %}
+                <p>{{ m }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="card">
+
+        <h2>Original Video</h2>
+
+        {% if original %}
+           <video controls width="420" style="border-radius: 10px;" class="video-preview">
+    <source src="/original/{{base}}/{{original}}" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+        {% else %}
+            <p>No original video found.</p>
+        {% endif %}
+
+    </div>
+
+    <div class="card action-card">
+
+        <h2>Operations</h2>
+
+        <form action="/operate/{{base}}" method="POST">
+
+            <button class="btn large-btn" name="action" value="split"
+                title="Extracts video into images frame-by-frame">
+                ✂ Split Frames
+            </button>
+
+            <button class="btn large-btn" name="action" value="keys"
+                title="Generate cryptographic AES + Blowfish keys">
+                🔑 Generate Keys
+            </button>
+
+            <button class="btn large-btn" name="action" value="encrypt"
+                title="Encrypts each frame using AES+Blowfish hybrid">
+                🔒 Encrypt Frames
+            </button>
+
+            <button class="btn large-btn" name="action" value="decrypt"
+                title="Decrypts previously encrypted video frames">
+                🔓 Decrypt Frames
+            </button>
+
+            <button class="btn success-btn large-btn" name="action" value="rebuild"
+                title="Rebuild final MP4 video using frames + audio">
+                🎞 Rebuild Video
+            </button>
+
+        </form>
+
+    </div>
+
+    <div class="card status-card">
+
+        <h2>Status</h2>
+
+        <div class="status-grid">
+            <div class="status-box">Frames: <b>{{counts.frames}}</b></div>
+            <div class="status-box">Encrypted: <b>{{counts.encrypted}}</b></div>
+            <div class="status-box">Decrypted: <b>{{counts.decrypted}}</b></div>
+        </div>
+
+    </div>
+
+    {% if output_ready %}
+    <div class="card output-card">
+        <h2>Output Video</h2>
+        <video class="video-preview" controls>
+            <source src="/output/{{base}}">
+        </video>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
